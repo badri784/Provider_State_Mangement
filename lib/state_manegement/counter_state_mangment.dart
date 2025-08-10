@@ -1,14 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CounterStateMangment extends ChangeNotifier {
-  int _counter = 0;
-  int get counter => _counter;
+class CounterStateMangment extends StateNotifier<int> {
+  CounterStateMangment() : super(0);
 
-  void incrementCounter() {
-    _counter++;
+  void increment() {
+    state++;
   }
 
   void downCount() {
-    _counter = 0;
+    state--;
+  }
+
+  void resetCount() {
+    state = 0;
   }
 }
+
+final counterprovider = StateNotifierProvider<CounterStateMangment, int>(
+  (_) => CounterStateMangment(),
+);
